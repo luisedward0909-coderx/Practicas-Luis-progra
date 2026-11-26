@@ -1,0 +1,36 @@
+
+#include <iostream>
+using namespace std;
+
+bool comprobarBisiesto(int anio) {
+    return (anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0);
+}
+
+bool revisarFecha(int dia, int mes, int anio) {
+    if (anio < 1 || mes < 1 || mes > 12 || dia < 1) return false;
+
+    int cantidadDias = 31;
+
+    if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+        cantidadDias = 30;
+    } else if (mes == 2) {
+        cantidadDias = comprobarBisiesto(anio) ? 29 : 28;
+    }
+
+    return dia <= cantidadDias;
+}
+
+int main() {
+    int dia, mes, anio;
+
+    cout << "Digite el dia, mes y anio: ";
+    cin >> dia >> mes >> anio;
+
+    if (revisarFecha(dia, mes, anio)) {
+        cout << "La fecha es correcta." << endl;
+    } else {
+        cout << "La fecha no es correcta." << endl;
+    }
+
+    return 0;
+}
