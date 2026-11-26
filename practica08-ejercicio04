@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+int pedirCantidad();
+void cargarVector(int a[], int n);
+void imprimirVector(int vec[], int n);
+void invertirVector(int a[], int b[], int n);
+
+int main() {
+    int a[100], b[100];
+    int n = pedirCantidad();
+
+    cargarVector(a, n);
+    invertirVector(a, b, n);
+
+    cout << "\nVector A: ";
+    imprimirVector(a, n);
+    cout << "Vector B (invertido): ";
+    imprimirVector(b, n);
+
+    return 0;
+}
+
+int pedirCantidad() {
+    int n;
+    do {
+        cout << "Digite la cantidad de elementos (1 a 100): ";
+        cin >> n;
+
+        if (n < 1 || n > 100) {
+            cout << "Cantidad no valida, intente otra vez." << endl;
+        }
+    } while (n < 1 || n > 100);
+
+    return n;
+}
+
+void cargarVector(int a[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << "A[" << i << "]: ";
+        cin >> a[i];
+    }
+}
+
+void imprimirVector(int vec[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << vec[i] << " ";
+    }
+    cout << endl;
+}
+
+// Copia los elementos de A en orden inverso dentro de B
+void invertirVector(int a[], int b[], int n) {
+    for (int i = 0; i < n; i++) {
+        b[i] = a[n - 1 - i];
+    }
+}
