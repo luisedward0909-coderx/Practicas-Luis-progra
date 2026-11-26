@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+int pedirCantidad();
+void cargarVector(double vec[], int n);
+void imprimirVector(double vec[], int n);
+double encontrarMayor(double vec[], int n);
+
+int main() {
+    double vec[100];
+    int n = pedirCantidad();
+
+    cargarVector(vec, n);
+
+    cout << "\nVector ingresado: ";
+    imprimirVector(vec, n);
+
+    double mayor = encontrarMayor(vec, n);
+
+    cout << "El numero mayor es: " << mayor << endl;
+
+    return 0;
+}
+
+// Solicita la cantidad de elementos del vector
+int pedirCantidad() {
+    int n;
+
+    do {
+        cout << "Digite la cantidad de elementos (1 a 100): ";
+        cin >> n;
+
+        if (n < 1 || n > 100) {
+            cout << "Valor no valido, intente nuevamente." << endl;
+        }
+
+    } while (n < 1 || n > 100);
+
+    return n;
+}
+
+// Guarda los valores dentro del vector
+void cargarVector(double vec[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << "Digite el elemento [" << i << "]: ";
+        cin >> vec[i];
+    }
+}
+
+// Muestra todos los elementos del vector
+void imprimirVector(double vec[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << vec[i] << " ";
+    }
+
+    cout << endl;
+}
+
+// Busca el numero mayor dentro del vector
+double encontrarMayor(double vec[], int n) {
+    double mayor = vec[0];
+
+    for (int i = 1; i < n; i++) {
+        if (vec[i] > mayor) {
+            mayor = vec[i];
+        }
+    }
+
+    return mayor;
+}
