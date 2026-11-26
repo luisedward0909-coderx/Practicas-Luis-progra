@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+
+int leerTamano();
+void leerVector(double v[], int n);
+void mostrarVector(double v[], int n);
+void ordenarBurbuja(double v[], int n);
+
+int main() {
+    double v[100];
+    int n = leerTamano();
+    leerVector(v, n);
+
+    cout << "\nAntes de ordenar: ";
+    mostrarVector(v, n);
+
+    ordenarBurbuja(v, n);
+
+    cout << "Despues de ordenar: ";
+    mostrarVector(v, n);
+
+    return 0;
+}
+
+int leerTamano() {
+    int n;
+    do {
+        cout << "Cantidad de elementos (1 a 100): ";
+        cin >> n;
+        if (n < 1 || n > 100) {
+            cout << "Cantidad no valida, intente de nuevo." << endl;
+        }
+    } while (n < 1 || n > 100);
+    return n;
+}
+
+void leerVector(double v[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << "Elemento [" << i << "]: ";
+        cin >> v[i];
+    }
+}
+
+void mostrarVector(double v[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << v[i] << " ";
+    }
+    cout << endl;
+}
+
+// En cada pasada el mayor "sube" hasta el final, por eso el limite baja con i
+void ordenarBurbuja(double v[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - 1 - i; j++) {
+            if (v[j] > v[j + 1]) {
+                double aux = v[j];
+                v[j] = v[j + 1];
+                v[j + 1] = aux;
+            }
+        }
+    }
+}
