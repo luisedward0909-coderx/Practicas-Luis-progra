@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+
+int leerTamano(char nombre);
+void leerVector(double v[], int n, char nombre);
+void mostrarVector(double v[], int n);
+void concatenar(double a[], int n, double b[], int m, double c[]);
+
+int main() {
+    double a[100], b[100], c[200];
+
+    int n = leerTamano('A');
+    leerVector(a, n, 'A');
+    int m = leerTamano('B');
+    leerVector(b, m, 'B');
+
+    concatenar(a, n, b, m, c);
+
+    cout << "\nVector A: ";
+    mostrarVector(a, n);
+    cout << "Vector B: ";
+    mostrarVector(b, m);
+    cout << "Vector C: ";
+    mostrarVector(c, n + m);
+
+    return 0;
+}
+
+int leerTamano(char nombre) {
+    int n;
+    do {
+        cout << "Cantidad de elementos del vector " << nombre << " (1 a 100): ";
+        cin >> n;
+        if (n < 1 || n > 100) {
+            cout << "Cantidad no valida, intente de nuevo." << endl;
+        }
+    } while (n < 1 || n > 100);
+    return n;
+}
+
+void leerVector(double v[], int n, char nombre) {
+    for (int i = 0; i < n; i++) {
+        cout << nombre << "[" << i << "]: ";
+        cin >> v[i];
+    }
+}
+
+void mostrarVector(double v[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << v[i] << " ";
+    }
+    cout << endl;
+}
+
+// Primero copia A y despues copia B a continuacion
+void concatenar(double a[], int n, double b[], int m, double c[]) {
+    for (int i = 0; i < n; i++) {
+        c[i] = a[i];
+    }
+    for (int j = 0; j < m; j++) {
+        c[n + j] = b[j];
+    }
+}
