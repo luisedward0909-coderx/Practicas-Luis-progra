@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+
+int leerTamano(char nombre);
+void leerOrdenado(double v[], int n, char nombre);
+void mostrarVector(double v[], int n);
+void intercalar(double a[], int n, double b[], int m, double c[]);
+
+int main() {
+    double a[100], b[100], c[200];
+
+    int n = leerTamano('A');
+    leerOrdenado(a, n, 'A');
+    int m = leerTamano('B');
+    leerOrdenado(b, m, 'B');
+
+    intercalar(a, n, b, m, c);
+
+    cout << "\nVector A: ";
+    mostrarVector(a, n);
+    cout << "Vector B: ";
+    mostrarVector(b, m);
+    cout << "Vector C (ordenado): ";
+    mostrarVector(c, n + m);
+
+    return 0;
+}
+
+int leerTamano(char nombre) {
+    int n;
+    do {
+        cout << "Cantidad de elementos del vector " << nombre << " (1 a 100): ";
+        cin >> n;
+        if (n < 1 || n > 100) {
+            cout << "Cantidad no valida, intente de nuevo." << endl;
+        }
+    } while (n < 1 || n > 100);
+    return n;
+}
+
+// Se pide cada valor otra vez si es menor que el anterior, para que quede ascendente
+void leerOrdenado(double v[], int n, char nombre) {
+    cout << "Ingrese los valores de " << nombre << " en orden ascendente:" << endl;
+    for (int i = 0; i < n; i++) {
+        do {
+            cout << nombre << "[" << i << "]: ";
+            cin >> v[i];
+            if (i > 0 && v[i] < v[i - 1]) {
+                cout << "Debe ser mayor o igual a " << v[i - 1] << endl;
+            }
+        } while (i > 0 && v[i] < v[i - 1]);
+    }
+}
+
+void mostrarVector(double v[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << v[i] << " ";
+    }
+    cout << endl;
+}
+
+// Va tomando el menor de los dos que quedan; al terminar uno, copia lo que sobra del otro
+void intercalar(double a[], int n, double b[], int m, double c[]) {
+    int i = 0, j = 0, k = 0;
+
+    while (i < n && j < m) {
+        if (a[i] <= b[j]) {
+            c[k] = a[i];
+            i++;
+        } else {
+            c[k] = b[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n) {
+        c[k] = a[i];
+        i++;
+        k++;
+    }
+    while (j < m) {
+        c[k] = b[j];
+        j++;
+        k++;
+    }
+}
