@@ -1,0 +1,58 @@
+
+#include <iostream>
+using namespace std;
+
+int leerCantidad();
+void ingresarVector(double vector[], int n);
+void imprimirVector(double vector[], int n);
+double encontrarMinimo(double vector[], int n);
+
+int main() {
+    double vector[100];
+    int n = leerCantidad();
+    ingresarVector(vector, n);
+
+    cout << "\nVector ingresado: ";
+    imprimirVector(vector, n);
+
+    double minimo = encontrarMinimo(vector, n);
+    cout << "El numero minimo es: " << minimo << endl;
+
+    return 0;
+}
+
+int leerCantidad() {
+    int n;
+    do {
+        cout << "Digite la cantidad de elementos (1 a 100): ";
+        cin >> n;
+        if (n < 1 || n > 100) {
+            cout << "Cantidad incorrecta, vuelva a intentar." << endl;
+        }
+    } while (n < 1 || n > 100);
+    return n;
+}
+
+void ingresarVector(double vector[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << "Digite el elemento [" << i << "]: ";
+        cin >> vector[i];
+    }
+}
+
+void imprimirVector(double vector[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << vector[i] << " ";
+    }
+    cout << endl;
+}
+
+double encontrarMinimo(double vector[], int n) {
+    double minimo = vector[0];
+    for (int i = 1; i < n; i++) {
+        if (vector[i] < minimo) {
+            minimo = vector[i];
+        }
+    }
+    return minimo;
+}
