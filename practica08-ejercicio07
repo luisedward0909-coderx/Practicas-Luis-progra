@@ -1,0 +1,49 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int pedirNumero();
+string pasarALetras(int numero);
+void imprimirResultado(int numero, string letras);
+
+int main() {
+    int numero = pedirNumero();
+    string letras = pasarALetras(numero);
+
+    imprimirResultado(numero, letras);
+
+    return 0;
+}
+
+int pedirNumero() {
+    int numero;
+
+    do {
+        cout << "Digite un numero entre 0 y 20: ";
+        cin >> numero;
+
+        if (numero < 0 || numero > 20) {
+            cout << "Numero no valido, intente nuevamente." << endl;
+        }
+
+    } while (numero < 0 || numero > 20);
+
+    return numero;
+}
+
+// Cada posicion del vector corresponde a un numero
+string pasarALetras(int numero) {
+    string letras[21] = {
+        "CERO", "UNO", "DOS", "TRES", "CUATRO", "CINCO",
+        "SEIS", "SIETE", "OCHO", "NUEVE", "DIEZ", "ONCE",
+        "DOCE", "TRECE", "CATORCE", "QUINCE", "DIECISEIS",
+        "DIECISIETE", "DIECIOCHO", "DIECINUEVE", "VEINTE"
+    };
+
+    return letras[numero];
+}
+
+void imprimirResultado(int numero, string letras) {
+    cout << "Numero: " << numero << " -> " << letras << endl;
+}
