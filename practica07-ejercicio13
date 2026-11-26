@@ -1,0 +1,32 @@
+
+#include <iostream>
+using namespace std;
+
+double aproximar(double numero, int decimales) {
+    double multiplicador = 1.0;
+    for (int i = 0; i < decimales; i++) {
+        multiplicador = multiplicador * 10.0;
+    }
+
+    double resultado = numero * multiplicador;
+    if (resultado >= 0) {
+        resultado = (int)(resultado + 0.5);
+    } else {
+        resultado = (int)(resultado - 0.5);
+    }
+
+    return resultado / multiplicador;
+}
+
+int main() {
+    double valor;
+    int cantidad;
+
+    cout << "Digite el numero real y la cantidad de decimales: ";
+    cin >> valor >> cantidad;
+
+    cout << "El resultado aproximado es: "
+         << aproximar(valor, cantidad) << endl;
+
+    return 0;
+}
